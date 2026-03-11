@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://click-games.xuejiep.workers.dev/sitemap.xml
