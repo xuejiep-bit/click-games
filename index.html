@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker Unblocked - Play Free Online | No Download</title>
+    <meta name="description" content="Play Cookie Clicker Unblocked for free online. No download needed. Click cookies, buy upgrades, and build your cookie empire. Works at school and work!">
+    <meta name="keywords" content="cookie clicker unblocked, cookie clicker, unblocked games, clicker games, idle games, free online games">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://click-games.pages.dev/">
+    <meta property="og:title" content="Cookie Clicker Unblocked - Play Free Online">
+    <meta property="og:description" content="Play Cookie Clicker Unblocked for free. No download, no sign-up. Click cookies and build your empire!">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cookie-brown: #8B5E3C;
+            --cookie-dark: #5C3D2E;
+            --cookie-light: #D4A574;
+            --gold: #FFD700;
+            --gold-dark: #E6AC00;
+            --bg-dark: #1a0e08;
+            --bg-medium: #2a1a10;
+            --bg-card: #3a2518;
+            --text-primary: #F5E6D3;
+            --text-secondary: #C4A882;
+            --accent-green: #4CAF50;
+            --accent-blue: #42A5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(139,94,60,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255,215,0,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(139,94,60,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 30px 20px 20px;
+            background: linear-gradient(180deg, rgba(42,26,16,0.9) 0%, transparent 100%);
+        }
+
+        header h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFA500 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 6px;
+        }
+
+        /* Game Container */
+        .game-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 20px 40px;
+            display: grid;
+            grid-template-columns: 280px 1fr 280px;
+            gap: 20px;
+            min-height: 70vh;
+        }
+
+        @media (max-width: 900px) {
+            .game-wrapper {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+        }
+
+        /* Panels */
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid rgba(139,94,60,0.3);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .panel-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(139,94,60,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Stats Panel (Left) */
+        .stats-panel .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(139,94,60,0.15);
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Cookie Area (Center) */
+        .cookie-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .cookie-counter {
+            text-align: center;
+        }
+
+        .cookie-count {
+            font-family: 'Fredoka', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1.2;
+        }
+
+        .cookie-per-sec {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .cookie-btn {
+            width: clamp(180px, 35vw, 240px);
+            height: clamp(180px, 35vw, 240px);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            background: radial-gradient(circle at 35% 35%, var(--cookie-light), var(--cookie-brown) 50%, var(--cookie-dark) 100%);
+            box-shadow: 
+                0 8px 30px rgba(0,0,0,0.5),
+                inset 0 -4px 12px rgba(0,0,0,0.3),
+                inset 0 4px 12px rgba(255,255,255,0.1);
+            transition: transform 0.1s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .cookie-btn:hover {
+            transform: scale(1.03);
+        }
+
+        .cookie-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Cookie chips (chocolate chips) */
+        .cookie-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; left: 0;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at 30% 25%, #5C3D2E 4px, transparent 4px),
+                radial-gradient(circle at 55% 20%, #5C3D2E 3px, transparent 3px),
+                radial-gradient(circle at 70% 40%, #5C3D2E 4px, transparent 4px),
+                radial-gradient(circle at 25% 55%, #5C3D2E 3px, transparent 3px),
+                radial-gradient(circle at 50% 50%, #5C3D2E 4px, transparent 4px),
+                radial-gradient(circle at 65% 65%, #5C3D2E 3px, transparent 3px),
+                radial-gradient(circle at 35% 75%, #5C3D2E 4px, transparent 4px),
+                radial-gradient(circle at 55% 78%, #5C3D2E 3px, transparent 3px),
+                radial-gradient(circle at 45% 38%, #5C3D2E 3px, transparent 3px);
+            pointer-events: none;
+        }
+
+        .cookie-btn::after {
+            content: '🍪';
+            position: absolute;
+            font-size: clamp(60px, 12vw, 90px);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+        }
+
+        /* Floating numbers */
+        .float-number {
+            position: absolute;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--gold);
+            pointer-events: none;
+            animation: floatUp 1s ease-out forwards;
+            z-index: 100;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-80px) scale(0.6); }
+        }
+
+        /* Shop Panel (Right) */
+        .shop-panel {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .shop-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .shop-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .shop-panel::-webkit-scrollbar-thumb {
+            background: rgba(139,94,60,0.4);
+            border-radius: 3px;
+        }
+
+        .upgrade-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid rgba(139,94,60,0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+            text-align: left;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .upgrade-btn:hover:not(:disabled) {
+            background: rgba(139,94,60,0.2);
+            border-color: rgba(139,94,60,0.4);
+            transform: translateY(-1px);
+        }
+
+        .upgrade-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .upgrade-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            background: rgba(139,94,60,0.3);
+        }
+
+        .upgrade-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .upgrade-name {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .upgrade-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .upgrade-cost {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+
+        .upgrade-count {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-left: auto;
+            padding-left: 8px;
+        }
+
+        /* Achievements */
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .achievement {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(139,94,60,0.15);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .achievement.unlocked {
+            opacity: 1;
+            border-color: var(--gold);
+            background: rgba(255,215,0,0.1);
+            animation: achievePop 0.4s ease;
+        }
+
+        @keyframes achievePop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .achievement-tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-dark);
+            border: 1px solid var(--cookie-brown);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            color: var(--text-primary);
+            font-family: 'Nunito', sans-serif;
+            z-index: 50;
+        }
+
+        .achievement:hover .achievement-tooltip {
+            display: block;
+        }
+
+        /* SEO Content Section */
+        .seo-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .seo-content h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 14px;
+            margin-top: 30px;
+        }
+
+        .seo-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .seo-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .seo-content a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .seo-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* FAQ Schema */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid rgba(139,94,60,0.2);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .faq-item h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .faq-item p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(139,94,60,0.15);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--gold);
+        }
+
+        /* Notification toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-family: 'Fredoka', sans-serif;
+            color: var(--gold);
+            font-size: 0.9rem;
+            z-index: 1000;
+            animation: toastIn 0.3s ease, toastOut 0.3s ease 2.5s forwards;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes toastOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .game-wrapper {
+                grid-template-columns: 1fr;
+                padding: 10px 16px 30px;
+            }
+            .stats-panel { order: 1; }
+            .cookie-area { order: 0; padding: 20px 0; }
+            .shop-panel { order: 2; max-height: none; }
+        }
+    </style>
+
+    <!-- Structured Data: Game -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Cookie Clicker Unblocked",
+        "description": "Play Cookie Clicker Unblocked for free online. No download needed. Click cookies, buy upgrades, and build your cookie empire.",
+        "applicationCategory": "Game",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "browserRequirements": "Requires JavaScript. Requires HTML5."
+    }
+    </script>
+
+    <!-- Structured Data: FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is Cookie Clicker Unblocked?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Cookie Clicker Unblocked is a free browser-based idle clicker game where you click cookies to earn points, buy upgrades, and build a cookie empire. It works on any network without restrictions."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I play Cookie Clicker Unblocked at school?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! Cookie Clicker Unblocked is designed to work on school and work networks. It runs directly in your browser with no downloads or installations needed."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is Cookie Clicker Unblocked free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, Cookie Clicker Unblocked is completely free to play. No sign-up, no download, and no payment is required."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does my progress save in Cookie Clicker Unblocked?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, your game progress is automatically saved in your browser. When you return, your cookies and upgrades will be right where you left them."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Cookie Clicker Unblocked</h1>
+    <p>Click. Upgrade. Build your cookie empire — free & unblocked!</p>
+</header>
+
+<main>
+    <div class="game-wrapper">
+        <!-- Left: Stats Panel -->
+        <div class="panel stats-panel">
+            <div class="panel-title">📊 Stats</div>
+            <div class="stat-item">
+                <span class="stat-label">Total Cookies</span>
+                <span class="stat-value" id="totalCookies">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Total Clicks</span>
+                <span class="stat-value" id="totalClicks">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Per Click</span>
+                <span class="stat-value" id="perClick">1</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Per Second</span>
+                <span class="stat-value" id="perSecond">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Buildings</span>
+                <span class="stat-value" id="totalBuildings">0</span>
+            </div>
+
+            <div class="panel-title" style="margin-top:20px;">🏆 Achievements</div>
+            <div class="achievements" id="achievements">
+                <div class="achievement" data-id="0">🖱️<span class="achievement-tooltip">First Click</span></div>
+                <div class="achievement" data-id="1">💯<span class="achievement-tooltip">100 Cookies</span></div>
+                <div class="achievement" data-id="2">🔥<span class="achievement-tooltip">1,000 Cookies</span></div>
+                <div class="achievement" data-id="3">⭐<span class="achievement-tooltip">10,000 Cookies</span></div>
+                <div class="achievement" data-id="4">👑<span class="achievement-tooltip">100,000 Cookies</span></div>
+                <div class="achievement" data-id="5">💎<span class="achievement-tooltip">1 Million</span></div>
+                <div class="achievement" data-id="6">🏭<span class="achievement-tooltip">10 Buildings</span></div>
+                <div class="achievement" data-id="7">🌍<span class="achievement-tooltip">50 Buildings</span></div>
+            </div>
+        </div>
+
+        <!-- Center: Cookie -->
+        <div class="cookie-area">
+            <div class="cookie-counter">
+                <div class="cookie-count" id="cookieDisplay">0 cookies</div>
+                <div class="cookie-per-sec">per second: <span id="cpsDisplay">0</span></div>
+            </div>
+            <button class="cookie-btn" id="cookieBtn" aria-label="Click to earn cookies"></button>
+        </div>
+
+        <!-- Right: Shop -->
+        <div class="panel shop-panel">
+            <div class="panel-title">🛒 Shop</div>
+            <div id="shopItems"></div>
+        </div>
+    </div>
+
+    <!-- SEO Content -->
+    <section class="seo-content">
+        <h2>What is Cookie Clicker Unblocked?</h2>
+        <p>Cookie Clicker Unblocked is a free-to-play idle clicker game that you can enjoy directly in your browser. The goal is simple: click the giant cookie to earn cookies, then spend those cookies on upgrades and buildings that automatically produce even more cookies for you. It's the perfect game for a quick break or a long session of cookie-collecting fun.</p>
+        <p>This unblocked version works on any network, including school and workplace connections. There's nothing to download or install — just open the page and start clicking!</p>
+
+        <h2>How to Play Cookie Clicker Unblocked</h2>
+        <p>Playing is easy. Click the big cookie in the center of the screen to earn cookies. Each click gives you one or more cookies depending on your upgrades. Use your cookies to purchase buildings from the shop on the right side. Each building generates cookies automatically every second, so your cookie count keeps growing even when you're not clicking.</p>
+        <p>As you progress, you'll unlock achievements, buy more powerful upgrades, and watch your cookies-per-second skyrocket. The game saves your progress automatically, so you can come back anytime to continue building your cookie empire.</p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <h3>What is Cookie Clicker Unblocked?</h3>
+            <p>Cookie Clicker Unblocked is a free browser-based idle clicker game where you click cookies to earn points, buy upgrades, and build a cookie empire. It works on any network without restrictions.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Can I play Cookie Clicker Unblocked at school?</h3>
+            <p>Yes! Cookie Clicker Unblocked is designed to work on school and work networks. It runs directly in your browser with no downloads or installations needed.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Is Cookie Clicker Unblocked free?</h3>
+            <p>Yes, Cookie Clicker Unblocked is completely free to play. No sign-up, no download, and no payment is required.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Does my progress save?</h3>
+            <p>Yes, your game progress is automatically saved in your browser using local storage. When you return to the page, your cookies and upgrades will be right where you left them.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What upgrades are available?</h3>
+            <p>You can purchase Cursors, Grandmas, Farms, Mines, Factories, Banks, Temples, and Wizard Towers. Each building type produces cookies at a different rate, and the cost increases as you buy more of each type.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Cookie Clicker Unblocked. Play free online games. No download required.</p>
+</footer>
+
+<script>
+// ========== GAME STATE ==========
+let state = {
+    cookies: 0,
+    totalCookies: 0,
+    totalClicks: 0,
+    clickPower: 1,
+    cps: 0,
+    buildings: {},
+    achievements: new Set()
+};
+
+// ========== BUILDINGS DATA ==========
+const buildings = [
+    { id: 'cursor',  name: 'Cursor',        icon: '👆', baseCost: 15,      baseCps: 0.1,  desc: '+0.1 cookies/sec' },
+    { id: 'grandma', name: 'Grandma',        icon: '👵', baseCost: 100,     baseCps: 1,    desc: '+1 cookie/sec' },
+    { id: 'farm',    name: 'Farm',           icon: '🌾', baseCost: 1100,    baseCps: 8,    desc: '+8 cookies/sec' },
+    { id: 'mine',    name: 'Mine',           icon: '⛏️', baseCost: 12000,   baseCps: 47,   desc: '+47 cookies/sec' },
+    { id: 'factory', name: 'Factory',        icon: '🏭', baseCost: 130000,  baseCps: 260,  desc: '+260 cookies/sec' },
+    { id: 'bank',    name: 'Bank',           icon: '🏦', baseCost: 1400000, baseCps: 1400, desc: '+1,400 cookies/sec' },
+    { id: 'temple',  name: 'Temple',         icon: '🏛️', baseCost: 20000000,baseCps: 7800, desc: '+7,800 cookies/sec' },
+    { id: 'wizard',  name: 'Wizard Tower',   icon: '🧙', baseCost: 330000000,baseCps:44000, desc: '+44,000 cookies/sec' },
+];
+
+// ========== ACHIEVEMENTS ==========
+const achievementChecks = [
+    { id: 0, check: (s) => s.totalClicks >= 1 },
+    { id: 1, check: (s) => s.totalCookies >= 100 },
+    { id: 2, check: (s) => s.totalCookies >= 1000 },
+    { id: 3, check: (s) => s.totalCookies >= 10000 },
+    { id: 4, check: (s) => s.totalCookies >= 100000 },
+    { id: 5, check: (s) => s.totalCookies >= 1000000 },
+    { id: 6, check: (s) => getTotalBuildings() >= 10 },
+    { id: 7, check: (s) => getTotalBuildings() >= 50 },
+];
+
+// ========== HELPER FUNCTIONS ==========
+function formatNumber(n) {
+    if (n >= 1e12) return (n / 1e12).toFixed(1) + ' T';
+    if (n >= 1e9) return (n / 1e9).toFixed(1) + ' B';
+    if (n >= 1e6) return (n / 1e6).toFixed(1) + ' M';
+    if (n >= 1e3) return (n / 1e3).toFixed(1) + ' K';
+    return Math.floor(n).toString();
+}
+
+function getBuildingCost(building) {
+    const owned = state.buildings[building.id] || 0;
+    return Math.floor(building.baseCost * Math.pow(1.15, owned));
+}
+
+function getTotalBuildings() {
+    return Object.values(state.buildings).reduce((a, b) => a + b, 0);
+}
+
+function calculateCPS() {
+    let total = 0;
+    buildings.forEach(b => {
+        total += (state.buildings[b.id] || 0) * b.baseCps;
+    });
+    state.cps = total;
+    return total;
+}
+
+// ========== DISPLAY UPDATE ==========
+function updateDisplay() {
+    document.getElementById('cookieDisplay').textContent = formatNumber(state.cookies) + ' cookies';
+    document.getElementById('cpsDisplay').textContent = formatNumber(state.cps);
+    document.getElementById('totalCookies').textContent = formatNumber(state.totalCookies);
+    document.getElementById('totalClicks').textContent = formatNumber(state.totalClicks);
+    document.getElementById('perClick').textContent = state.clickPower;
+    document.getElementById('perSecond').textContent = formatNumber(state.cps);
+    document.getElementById('totalBuildings').textContent = getTotalBuildings();
+
+    // Update shop buttons
+    document.querySelectorAll('.upgrade-btn').forEach(btn => {
+        const id = btn.dataset.buildingId;
+        const building = buildings.find(b => b.id === id);
+        const cost = getBuildingCost(building);
+        btn.disabled = state.cookies < cost;
+        btn.querySelector('.upgrade-cost').textContent = '🍪 ' + formatNumber(cost);
+        btn.querySelector('.upgrade-count').textContent = 'x' + (state.buildings[id] || 0);
+    });
+}
+
+// ========== SHOP RENDER ==========
+function renderShop() {
+    const container = document.getElementById('shopItems');
+    container.innerHTML = '';
+    buildings.forEach(b => {
+        const cost = getBuildingCost(b);
+        const btn = document.createElement('button');
+        btn.className = 'upgrade-btn';
+        btn.dataset.buildingId = b.id;
+        btn.disabled = state.cookies < cost;
+        btn.innerHTML = `
+            <div class="upgrade-icon">${b.icon}</div>
+            <div class="upgrade-info">
+                <div class="upgrade-name">${b.name}</div>
+                <div class="upgrade-desc">${b.desc}</div>
+            </div>
+            <div style="text-align:right;">
+                <div class="upgrade-cost">🍪 ${formatNumber(cost)}</div>
+                <div class="upgrade-count">x${state.buildings[b.id] || 0}</div>
+            </div>
+        `;
+        btn.addEventListener('click', () => buyBuilding(b));
+        container.appendChild(btn);
+    });
+}
+
+// ========== GAME ACTIONS ==========
+function clickCookie(e) {
+    state.cookies += state.clickPower;
+    state.totalCookies += state.clickPower;
+    state.totalClicks++;
+
+    // Floating number
+    const btn = document.getElementById('cookieBtn');
+    const rect = btn.getBoundingClientRect();
+    const floater = document.createElement('div');
+    floater.className = 'float-number';
+    floater.textContent = '+' + state.clickPower;
+    floater.style.left = (e.clientX || (rect.left + rect.width / 2)) - 15 + 'px';
+    floater.style.top = (e.clientY || (rect.top + 20)) - 20 + 'px';
+    document.body.appendChild(floater);
+    setTimeout(() => floater.remove(), 1000);
+
+    checkAchievements();
+    updateDisplay();
+}
+
+function buyBuilding(building) {
+    const cost = getBuildingCost(building);
+    if (state.cookies >= cost) {
+        state.cookies -= cost;
+        state.buildings[building.id] = (state.buildings[building.id] || 0) + 1;
+
+        // Every 10 of same building = +1 click power
+        if (state.buildings[building.id] % 10 === 0) {
+            state.clickPower++;
+        }
+
+        calculateCPS();
+        checkAchievements();
+        updateDisplay();
+    }
+}
+
+// ========== ACHIEVEMENTS ==========
+function checkAchievements() {
+    achievementChecks.forEach(a => {
+        if (!state.achievements.has(a.id) && a.check(state)) {
+            state.achievements.add(a.id);
+            const el = document.querySelector(`.achievement[data-id="${a.id}"]`);
+            if (el) {
+                el.classList.add('unlocked');
+                // Show toast
+                showToast('🏆 Achievement: ' + el.querySelector('.achievement-tooltip').textContent);
+            }
+        }
+    });
+}
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// ========== SAVE / LOAD ==========
+function saveGame() {
+    const data = {
+        cookies: state.cookies,
+        totalCookies: state.totalCookies,
+        totalClicks: state.totalClicks,
+        clickPower: state.clickPower,
+        buildings: state.buildings,
+        achievements: [...state.achievements],
+        timestamp: Date.now()
+    };
+    try {
+        localStorage.setItem('cookieClickerSave', JSON.stringify(data));
+    } catch(e) {}
+}
+
+function loadGame() {
+    try {
+        const raw = localStorage.getItem('cookieClickerSave');
+        if (raw) {
+            const data = JSON.parse(raw);
+            state.cookies = data.cookies || 0;
+            state.totalCookies = data.totalCookies || 0;
+            state.totalClicks = data.totalClicks || 0;
+            state.clickPower = data.clickPower || 1;
+            state.buildings = data.buildings || {};
+            state.achievements = new Set(data.achievements || []);
+
+            // Calculate offline earnings
+            if (data.timestamp) {
+                const elapsed = (Date.now() - data.timestamp) / 1000;
+                if (elapsed > 5) {
+                    calculateCPS();
+                    const earned = Math.floor(state.cps * elapsed * 0.5); // 50% offline rate
+                    if (earned > 0) {
+                        state.cookies += earned;
+                        state.totalCookies += earned;
+                        setTimeout(() => showToast('🌙 Welcome back! Earned ' + formatNumber(earned) + ' cookies while away'), 500);
+                    }
+                }
+            }
+
+            calculateCPS();
+
+            // Restore achievement display
+            state.achievements.forEach(id => {
+                const el = document.querySelector(`.achievement[data-id="${id}"]`);
+                if (el) el.classList.add('unlocked');
+            });
+        }
+    } catch(e) {}
+}
+
+// ========== GAME LOOP ==========
+function gameTick() {
+    if (state.cps > 0) {
+        const gain = state.cps / 10; // 100ms tick
+        state.cookies += gain;
+        state.totalCookies += gain;
+        checkAchievements();
+    }
+    updateDisplay();
+}
+
+// ========== INIT ==========
+function init() {
+    loadGame();
+    renderShop();
+    updateDisplay();
+
+    document.getElementById('cookieBtn').addEventListener('click', clickCookie);
+
+    // Game tick: every 100ms
+    setInterval(gameTick, 100);
+
+    // Auto-save every 30 seconds
+    setInterval(saveGame, 30000);
+
+    // Save on page leave
+    window.addEventListener('beforeunload', saveGame);
+}
+
+init();
+</script>
+
+</body>
+</html>
